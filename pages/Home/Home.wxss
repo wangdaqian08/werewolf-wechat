@@ -1,0 +1,9 @@
+/* pages/Home/index.wxss */
+@import "../../styles/variables.wxss";
+@import "../../styles/common.wxss";
+
+/* Page-specific styles */
+.text-logo {
+  font-size: 100px;
+  margin-bottom: 40px;
+}

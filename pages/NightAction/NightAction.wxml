@@ -1,0 +1,149 @@
+
+<!-- index.wxml -->
+<view class="night-container">
+  <view class="header">
+    <text class="night-info">第{{currentDay}}天 · 夜晚</text>
+    <text class="role-turn">{{getRoleName()}}行动阶段</text>
+  </view>
+
+  <block wx:if="{{isCurrentPlayer}}">
+    <view class="role-info">
+      <view class="role-card">
+        <image class="role-image" src="{{getRoleImageSrc()}}" mode="aspectFit"></image>
+        <text class="role-name">{{getRoleName()}}</text>
+        <text class="role-hint">{{getRoleDescription()}}</text>
+      </view>
+    </view>
+
+    <view class="action-area">
+      <!-- 狼人操作界面 -->
+      <block wx:if="{{currentRole === 'werewolf'}}">
+        <view class="werewolf-action">
+          <text class="action-title">选择要击杀的目标</text>
+          <view class="players-grid">
+            <view 
+              wx:for="{{getAlivePlayers()}}" 
+              wx:key="seatNumber"
+              class="player-card {{selectedTarget === item.seatNumber ? 'selected' : ''}}"
+              data-seat="{{item.seatNumber}}"
+              bindtap="selectTarget"
+            >
+              <view class="player-avatar">
+                <text class="player-number">{{item.seatNumber}}</text>
+              </view>
+              <text class="player-name">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- 女巫操作界面 -->
+      <block wx:if="{{currentRole === 'witch'}}">
+        <view class="witch-action">
+          <view class="potion-info">
+            <view class="potion save {{!hasSavePotion ? 'used' : ''}}">
+              <image class="potion-image" src="/static/images/save-potion.png" mode="aspectFit"></image>
+              <text class="potion-name">解药</text>
+            </view>
+            <view class="potion poison {{!hasPoisionPotion ? 'used' : ''}}">
+              <image class="potion-image" src="/static/images/poison-potion.png" mode="aspectFit"></image>
+              <text class="potion-name">毒药</text>
+            </view>
+          </view>
+
+          <block wx:if="{{showDeathInfo}}">
+            <view class="death-info">
+              <text class="death-hint">今晚{{killedPlayer}}号玩家被杀</text>
+              <view wx:if="{{hasSavePotion}}" class="save-action">
+                <button class="action-button save" bindtap="useSavePotion">使用解药</button>
+                <button class="action-button skip" bindtap="skipSavePotion">不使用</button>
+              </view>
+            </view>
+          </block>
+
+          <block wx:if="{{hasPoisionPotion && !usedSavePotion}}">
+            <view class="poison-action">
+              <text class="action-title">选择要毒杀的目标</text>
+              <view class="players-grid">
+                <view 
+                  wx:for="{{getAlivePlayers()}}" 
+                  wx:key="seatNumber"
+                  class="player-card {{selectedPoisonTarget === item.seatNumber ? 'selected' : ''}}"
+                  data-seat="{{item.seatNumber}}"
+                  bindtap="selectPoisonTarget"
+                >
+                  <view class="player-avatar">
+                    <text class="player-number">{{item.seatNumber}}</text>
+                  </view>
+                  <text class="player-name">{{item.name}}</text>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </block>
+
+      <!-- 预言家操作界面 -->
+      <block wx:if="{{currentRole === 'seer'}}">
+        <view class="seer-action">
+          <text class="action-title">选择要查验的玩家</text>
+          <view class="players-grid">
+            <view 
+              wx:for="{{getCheckablePlayers()}}" 
+              wx:key="seatNumber"
+              class="player-card {{selectedCheckTarget === item.seatNumber ? 'selected' : ''}}"
+              data-seat="{{item.seatNumber}}"
+              bindtap="selectCheckTarget"
+            >
+              <view class="player-avatar">
+                <text class="player-number">{{item.seatNumber}}</text>
+              </view>
+              <text class="player-name">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- 守卫操作界面 -->
+      <block wx:if="{{currentRole === 'guard'}}">
+        <view class="guard-action">
+          <text class="action-title">选择要守护的玩家</text>
+          <text class="guard-hint">不能连续两晚守护同一个人</text>
+          <view class="players-grid">
+            <view 
+              wx:for="{{getGuardablePlayers()}}" 
+              wx:key="seatNumber"
+              class="player-card {{selectedGuardTarget === item.seatNumber ? 'selected' : ''}} {{lastGuardedPlayer === item.seatNumber ? 'disabled' : ''}}"
+              data-seat="{{item.seatNumber}}"
+              bindtap="selectGuardTarget"
+            >
+              <view class="player-avatar">
+                <text class="player-number">{{item.seatNumber}}</text>
+              </view>
+              <text class="player-name">{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="action-buttons">
+      <button 
+        class="confirm-button" 
+        disabled="{{!selectedTarget && !selectedPoisonTarget && !selectedCheckTarget && !selectedGuardTarget && !usedSavePotion}}"
+        bindtap="confirmAction"
+      >确认</button>
+      <button 
+        class="skip-button" 
+        bindtap="skipAction"
+      >跳过</button>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="waiting-area">
+      <text class="waiting-text">等待{{getRoleName()}}行动中...</text>
+      <text class="waiting-hint">请保持安静，闭眼等待</text>
+    </view>
+  </block>
+</view>

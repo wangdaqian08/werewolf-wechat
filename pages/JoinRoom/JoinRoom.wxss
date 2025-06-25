@@ -1,0 +1,80 @@
+
+/* 导入全局样式 */
+@import "../../styles/variables.wxss";
+@import "../../styles/common.wxss";
+
+/* 输入区域样式 */
+.join-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-medium);
+}
+
+.input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+}
+
+.input {
+  width: 100%;
+  height: 80rpx;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 0 var(--spacing-medium);
+  color: var(--text-color);
+  font-size: var(--font-medium);
+}
+
+/* 座位区域样式 */
+.room-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large);
+}
+
+.seats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-medium);
+  padding: var(--spacing-medium);
+}
+
+.seat {
+  aspect-ratio: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-medium);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.seat.occupied {
+  background-color: rgba(255, 0, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+/* 按钮区域样式 */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+}
+
+/* 占位符样式 */
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}

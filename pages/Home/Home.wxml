@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="logo-container">
+    <text class="text-logo">🐺</text>
+  </view>
+  <text class="text-title">{{title}}</text>
+  <text class="text-subtitle">{{subtitle}}</text>
+  <button class="btn" bindtap="navigateToJoinRoom">加入房间</button>
+</view>
+<!-- <view>测试首页渲染</view> -->

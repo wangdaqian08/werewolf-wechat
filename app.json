@@ -1,0 +1,24 @@
+
+{
+  "pages": [
+    "pages/Home/Home",
+    "pages/JoinRoom/JoinRoom",
+    "pages/RoleReveal/RoleReveal",
+    "pages/Speech/index",
+    "pages/Vote/index",
+    "pages/NightAction/index",
+    "pages/Host/Host",
+    "pages/IdentityTag/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#1a1a2e",
+    "navigationStyle": "default",
+    "navigationBarBackgroundColor": "#1a1a2e",
+    "navigationBarTitleText": "狼人杀助手",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
