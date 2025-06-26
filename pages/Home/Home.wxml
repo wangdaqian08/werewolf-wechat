@@ -4,6 +4,15 @@
   </view>
   <text class="text-title">{{title}}</text>
   <text class="text-subtitle">{{subtitle}}</text>
-  <button class="btn" bindtap="navigateToJoinRoom">加入房间</button>
+ <!-- 授权按钮（未授权时显示） -->
+ <button 
+    wx:if="{{showAuthButton}}" 
+    open-type="getUserInfo" 
+    bindgetuserinfo="onGetUserInfo"
+    class="auth-btn">授权登录</button>
+<!-- 加入房间按钮（授权后显示） -->
+<button 
+    wx:if="{{hasUserInfo}}" 
+    bindtap="navigateToJoinRoom" 
+    class="btn">加入房间</button>
 </view>
-<!-- <view>测试首页渲染</view> -->

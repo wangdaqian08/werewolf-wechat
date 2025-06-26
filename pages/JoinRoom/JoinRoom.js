@@ -4,10 +4,10 @@ Page({
   data: {
     roomNumber: '',
     nickname: '',
-    selectedSeat: null,
+    selectedSeat: null, // 当前选中的座位（null表示未选择）
     occupiedSeats: [], // 已被占用的座位
     hasJoined: false,
-    isSitting: false,
+    isSitting: false,  // 是否已坐下
     seats: Array.from({length: 12}, (_, i) => ({
       number: i + 1,
       occupied: false
@@ -31,10 +31,12 @@ Page({
   // 选择座位
   selectSeat(e) {
     const seatNumber = e.currentTarget.dataset.seat
-    if (!this.data.occupiedSeats.includes(seatNumber)) {
-      this.setData({
-        selectedSeat: seatNumber
-      })
+    if (this.data.isSitting) {
+      wx.showToast({ title: '请先站起再换座位', icon: 'none' })
+      return
+    }
+    if (seatNumber !== undefined) {
+      this.setData({ selectedSeat: seatNumber });
     }
   },
 
