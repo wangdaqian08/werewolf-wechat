@@ -1,0 +1,52 @@
+
+<view class="container">
+  <!-- 未加入房间时显示 -->
+  <view class="join-section" wx:if="{{!hasJoined}}">
+    <view class="input-group">
+      <input 
+        type="number" 
+        class="input" 
+        placeholder="请输入6位房间号" 
+        maxlength="6" 
+        value="{{roomNumber}}" 
+        bindinput="onRoomNumberInput"
+      />
+      <input 
+        type="text" 
+        class="input" 
+        placeholder="请输入昵称" 
+        value="{{nickname}}" 
+        bindinput="onNicknameInput"
+      />
+    </view>
+    <button class="btn" bindtap="joinRoom">加入房间</button>
+  </view>
+
+  <!-- 已加入房间后显示 -->
+  <view class="room-section" wx:if="{{hasJoined}}">
+    <view class="seats-container">
+      <view 
+        wx:for="{{seats}}" 
+        wx:key="number"
+        class="seat {{item.occupied ? 'occupied' : ''}} {{selectedSeat === item.number ? 'selected' : ''}}"
+        data-seat="{{item.number}}"
+        bindtap="selectSeat"
+      >
+        {{item.number}}
+      </view>
+    </view>
+    
+    <view class="action-buttons">
+      <button 
+        class="btn" 
+        bindtap="sitDown" 
+        wx:if="{{!isSitting && selectedSeat}}"
+      >坐下</button>
+      <button 
+        class="btn" 
+        bindtap="standUp" 
+        wx:if="{{isSitting}}"
+      >站起来</button>
+    </view>
+  </view>
+</view>
