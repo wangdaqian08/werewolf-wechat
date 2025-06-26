@@ -38,8 +38,8 @@
     "disableSWC": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.33.0",
-  "projectname": "%E7%8B%BC%E4%BA%BA%E6%9D%80%E5%8A%A9%E6%89%8B",
+  "libVersion": "3.8.9",
+  "projectname": "wechat-werewolf",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -48,8 +48,9 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "appid": "wx00dae76416645048",
+  "appid": "touristappid",
   "simulatorPluginLibVersion": {},
   "simulatorType": "wechat",
-  "condition": {}
+  "condition": {},
+  "isGameTourist": false
 }

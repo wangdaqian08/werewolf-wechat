@@ -1,6 +1,6 @@
 {
   "libVersion": "3.8.9",
-  "projectname": "raywerewolf_fixed_project",
+  "projectname": "wechat-werewolf",
   "setting": {
     "urlCheck": true,
     "coverView": true,
@@ -20,17 +20,6 @@
     "bigPackageSizeSupport": false,
     "useIsolateContext": true
   },
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/Home/index",
-          "pathName": "pages/Home/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
-  }
+  "condition": {},
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
 }
