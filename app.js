@@ -35,8 +35,43 @@ App({
         }
       })
     }
+
+    // 统一登录方法
+    this.login()
+  },
+
+  // TODO this is not ready, login requires backnend app ready
+  login() {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success: async res => {
+          try {
+            // 1. 获取微信code
+            const code = res.code
+            console.log(`code: ${code}`)
+            // 2. 发送code到开发者服务器（示例）
+            // const { data } = await wx.request({
+            //   url: 'https://your-api.com/login',
+            //   method: 'POST',
+            //   data: { code }
+            // })
+
+            // 3. 存储用户标识
+            // this.globalData.userId = data.user_id
+            // resolve(data)
+          } catch (error) {
+            reject(error)
+          }
+        },
+        fail: reject
+      })
+    })
   },
   
+  /**
+   * Called when the mini-program is displayed.
+   * This lifecycle hook executes when the mini-program becomes visible.
+   */
   onShow() {
     // 小程序显示时执行的逻辑
     console.log('小程序显示')
@@ -56,6 +91,7 @@ App({
     userInfo: null,
     systemInfo: null,
     currentRoom: null,
-    gameState: null
+    gameState: null,
+    userId:null,
   }
 })
