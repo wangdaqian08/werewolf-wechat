@@ -50,16 +50,23 @@ App({
             const code = res.code
             console.log(`code: ${code}`)
             // 2. 发送code到开发者服务器（示例）
-            // const { data } = await wx.request({
-            //   url: 'https://your-api.com/login',
-            //   method: 'POST',
-            //   data: { code }
-            // })
-
+            const { data } = await wx.request({
+              url: 'https://localhost:8443/login',
+              header: {
+                'Content-Type': 'application/json'
+              },
+              success (res) {
+                console.log(res.data)
+              },
+              method: 'POST',
+              data: { code: "12345" }
+            })
+            console.log(`backend response: ${data}`)
             // 3. 存储用户标识
             // this.globalData.userId = data.user_id
             // resolve(data)
           } catch (error) {
+            console.log(`error: ${error}`)
             reject(error)
           }
         },
