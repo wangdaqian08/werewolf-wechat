@@ -4,8 +4,6 @@
     "pages/Home/Home",
     "pages/JoinRoom/JoinRoom",
     "pages/RoleReveal/RoleReveal",
-    "pages/Speech/index",
-    "pages/Vote/index",
     "pages/NightAction/index",
     "pages/Host/Host",
     "pages/IdentityTag/index"
