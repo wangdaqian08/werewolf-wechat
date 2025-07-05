@@ -1,4 +1,3 @@
-
 // index.js
 Page({
   data: {
@@ -7,33 +6,33 @@ Page({
     selectedSeat: null, // 当前选中的座位（null表示未选择）
     occupiedSeats: [], // 已被占用的座位
     hasJoined: false,
-    isSitting: false,  // 是否已坐下
-    seats: Array.from({length: 12}, (_, i) => ({
+    isSitting: false, // 是否已坐下
+    seats: Array.from({ length: 12 }, (_, i) => ({
       number: i + 1,
-      occupied: false
-    }))
+      occupied: false,
+    })),
   },
 
   // 输入房间号
   onRoomNumberInput(e) {
     this.setData({
-      roomNumber: e.detail.value
-    })
+      roomNumber: e.detail.value,
+    });
   },
 
   // 输入昵称
   onNicknameInput(e) {
     this.setData({
-      nickname: e.detail.value
-    })
+      nickname: e.detail.value,
+    });
   },
 
   // 选择座位
   selectSeat(e) {
-    const seatNumber = e.currentTarget.dataset.seat
+    const seatNumber = e.currentTarget.dataset.seat;
     if (this.data.isSitting) {
-      wx.showToast({ title: '请先站起再换座位', icon: 'none' })
-      return
+      wx.showToast({ title: '请先站起再换座位', icon: 'none' });
+      return;
     }
     if (seatNumber !== undefined) {
       this.setData({ selectedSeat: seatNumber });
@@ -44,35 +43,35 @@ Page({
   joinRoom() {
     if (this.data.roomNumber.length === 6 && this.data.nickname.length > 0) {
       this.setData({
-        hasJoined: true
-      })
+        hasJoined: true,
+      });
       wx.showToast({
         title: '成功加入房间',
         icon: 'success',
-        duration: 2000
-      })
+        duration: 2000,
+      });
     } else {
       wx.showToast({
         title: '请输入完整信息',
         icon: 'none',
-        duration: 2000
-      })
+        duration: 2000,
+      });
     }
   },
 
   // 坐下
   sitDown() {
     if (this.data.selectedSeat && !this.data.occupiedSeats.includes(this.data.selectedSeat)) {
-      const newOccupiedSeats = [...this.data.occupiedSeats, this.data.selectedSeat]
+      const newOccupiedSeats = [...this.data.occupiedSeats, this.data.selectedSeat];
       this.setData({
         occupiedSeats: newOccupiedSeats,
-        isSitting: true
-      })
+        isSitting: true,
+      });
       wx.showToast({
         title: '已成功坐下',
         icon: 'success',
-        duration: 2000
-      })
+        duration: 2000,
+      });
     }
   },
 
@@ -80,23 +79,23 @@ Page({
   standUp() {
     if (this.data.isSitting) {
       const newOccupiedSeats = this.data.occupiedSeats.filter(
-        seat => seat !== this.data.selectedSeat
-      )
+        (seat) => seat !== this.data.selectedSeat,
+      );
       this.setData({
         occupiedSeats: newOccupiedSeats,
         isSitting: false,
-        selectedSeat: null
-      })
+        selectedSeat: null,
+      });
       wx.showToast({
         title: '已站起',
         icon: 'success',
-        duration: 2000
-      })
+        duration: 2000,
+      });
     }
   },
 
   // 检查输入是否有效
   isValidInput() {
-    return this.data.roomNumber.length === 6 && this.data.nickname.length > 0
-  }
-})
+    return this.data.roomNumber.length === 6 && this.data.nickname.length > 0;
+  },
+});

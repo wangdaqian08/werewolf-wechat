@@ -11,9 +11,9 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
-
-  },
+  // onLoad(options) {
+  //
+  // },
 
   /**
    * Lifecycle function--Called when page is initially rendered
@@ -62,5 +62,5 @@ Page({
    */
   onShareAppMessage() {
 
-  }
-})
+  },
+});
