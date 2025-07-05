@@ -1,4 +1,6 @@
 // app.js
+const { backendUrl } = require('./config.js');
+
 App({
   onLaunch() {
     // 小程序启动时执行的逻辑
@@ -47,9 +49,10 @@ App({
           try {
             const { code } = res;
             console.log(`code: ${code}`);
+            const backendUrl = this.globalData.backendUrl;
             const data = await new Promise((resolve, reject) => {
               wx.request({
-                url: 'https://localhost:8443/login',
+                url: `${backendUrl}/login`,
                 header: {
                   'Content-Type': 'application/json',
                 },
@@ -104,5 +107,6 @@ App({
     currentRoom: null,
     gameState: null,
     userId: null,
+    backendUrl: backendUrl,
   },
 });

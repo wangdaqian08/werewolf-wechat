@@ -5,6 +5,7 @@ Page({
     subtitle: '线下面杀助手',
     hasUserInfo: false, // 初始状态为未授权
     showAuthButton: false, // 初始状态不显示授权button
+    showJoinRoomInput: false,
   },
 
   onLoad() {
@@ -73,6 +74,27 @@ Page({
     });
   },
 
+  // 显示加入房间输入框
+  showJoinRoomInputHandler() {
+    this.setData({
+      showJoinRoomInput: true,
+    });
+  },
+
+  // 取消加入房间
+  cancelJoinRoom() {
+    this.setData({
+      showJoinRoomInput: false
+    });
+  },
+
+  // 房间号输入处理
+  onRoomIdInput(e) {
+    this.setData({
+      roomId: e.detail.value
+    });
+  },
+
   // 跳转到加入房间页面
   navigateToJoinRoom() {
     if (!getApp().globalData.userInfo) {
@@ -83,4 +105,13 @@ Page({
       url: '/pages/JoinRoom/JoinRoom',
     });
   },
+
+  // 跳转到创建房间
+  navigateToCreateRoom() {
+    wx.navigateTo({
+      url: '/pages/CreateRoom/CreateRoom',
+    });
+  },
+
+
 });

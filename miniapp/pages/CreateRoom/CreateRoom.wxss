@@ -1,0 +1,65 @@
+
+/* 导入全局样式 */
+@import "../../styles/variables.wxss";
+@import "../../styles/common.wxss";
+
+
+/* Override text color for all content */
+.container,
+.section-title,
+.role-title,
+.role-item,
+.selected-roles,
+.summary {
+  color: #fff;
+}
+
+/* Remove backgrounds and box-shadows */
+.role-config,
+.selected-roles,
+.summary,
+.picker {
+  box-shadow: none;
+  border: none;
+  background-color: var(--bg-color);
+}
+
+/* Picker style: transparent, white text, border for visibility */
+.picker {
+  color: #fff;
+  border: 1rpx solid #444;
+}
+
+/* Flex layout for fixed roles and selected roles, 4 per row */
+.fixed-roles,
+.selected-roles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+/* Each role item: 4 per row, center content, subtle background */
+.role-item {
+  flex: 0 1 calc(25% - 12rpx);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  border-radius: 10rpx;
+  color: #fff;
+  border: none;
+  margin-bottom: 0;
+}
+
+/* Remove extra padding/margin from selected-roles and summary */
+.selected-roles,
+.summary {
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Button: keep using common style, just ensure text is white */
+button,
+button[disabled] {
+  color: #fff;
+}
