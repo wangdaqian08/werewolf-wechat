@@ -46,26 +46,38 @@ App({
       wx.login({
         success: async res => {
           try {
-            // 1. 获取微信code
-            const code = res.code
-            console.log(`code: ${code}`)
-            // 2. 发送code到开发者服务器（示例）
-            // const { data } = await wx.request({
-            //   url: 'https://your-api.com/login',
-            //   method: 'POST',
-            //   data: { code }
-            // })
-
-            // 3. 存储用户标识
-            // this.globalData.userId = data.user_id
-            // resolve(data)
+            const code = res.code;
+            console.log(`code: ${code}`);
+            const data = await new Promise((resolve, reject) => {
+              wx.request({
+                url: 'https://localhost:8443/login',
+                header: {
+                  'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                data: { code }, // use actual code
+                success: res => {
+                  console.log(res.data);
+                  resolve(res.data);
+                },
+                fail: err => {
+                  console.error(err);
+                  reject(err);
+                }
+              });
+            });
+            console.log(`backend response: ${JSON.stringify(data)}`);
+            // Uncomment and use if needed:
+            // this.globalData.userId = data.user_id;
+            // resolve(data);
           } catch (error) {
-            reject(error)
+            console.log(`error: ${JSON.stringify(error)}`);
+            reject(error);
           }
         },
         fail: reject
-      })
-    })
+      });
+    });
   },
   
   /**

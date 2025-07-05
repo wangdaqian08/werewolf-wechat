@@ -1,10 +1,17 @@
-/.idea
-.DS_Store
+# IDE and OS files
 .idea/
+.DS_Store
+
+# Build and output directories
+werewolf-server/out/
+werewolf-server/build/
+werewolf-server/.gradle/
+werewolf-server/.kotlin/
+
+# Compiled files
 *.class
 *.iml
 *.iws
-./werewolf-server/out/
-./werewolf-server/build/
-./werewolf-server/.gradle/
-./werewolf-server/.kotlin/
+
+# SSL keystore files
+werewolf-server/werewolf-server/src/main/resources/*.p12

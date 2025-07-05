@@ -1,0 +1,12 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: ${WEREWOLF_SSL_KEYSTORE_PASSWORD}
+    key-store-type: PKCS12
+    key-alias: ${WEREWOLF_SSL_KEY_ALIAS}
+
+logging:
+  level:
+    org.springframework.boot.context.config: DEBUG
