@@ -1,4 +1,6 @@
 // app.js
+const { backendUrl } = require('./config.js');
+
 App({
   onLaunch() {
     // 小程序启动时执行的逻辑
@@ -105,6 +107,6 @@ App({
     currentRoom: null,
     gameState: null,
     userId: null,
-    backendUrl: 'https://localhost:8443', // 全局后端 URL
+    backendUrl: backendUrl,
   },
 });

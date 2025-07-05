@@ -19,7 +19,7 @@
     </button>
     <!-- 加入房间按钮（授权后显示） -->
     <button
-            wx:if="{{hasUserInfo}}"
+            wx:if="{{hasUserInfo && !showJoinRoomInput}}"
             bindtap="navigateToJoinRoom"
             class="btn">加入房间
     </button>
