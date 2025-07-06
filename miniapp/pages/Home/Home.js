@@ -33,7 +33,7 @@ Page({
           showAuthButton: true,
           hasUserInfo: false,
         });
-        wx.showToast({title: "获取授权设置失败", icon: "none"});
+        wx.showToast({ title: "获取授权设置失败", icon: "none" });
       },
     });
   },
@@ -49,7 +49,7 @@ Page({
     } else {
       // 用户拒绝授权
       this.setData({ showAuthButton: true });
-      wx.showToast({title: "需要授权才能加入游戏", icon: "none"});
+      wx.showToast({ title: "需要授权才能加入游戏", icon: "none" });
       // 引导用户手动打开
       this.forceUserReAuthenticate();
     }
@@ -77,7 +77,7 @@ Page({
   // 跳转到加入房间页面
   navigateToJoinRoom() {
     if (!getApp().globalData.userInfo) {
-      wx.showToast({title: "请先授权登录", icon: "none"});
+      wx.showToast({ title: "请先授权登录", icon: "none" });
       return;
     }
     wx.navigateTo({

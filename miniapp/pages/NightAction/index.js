@@ -15,42 +15,35 @@ Page({
   /**
    * Lifecycle function--Called when page is initially rendered
    */
-  onReady() {
-  },
+  onReady() {},
 
   /**
    * Lifecycle function--Called when page show
    */
-  onShow() {
-  },
+  onShow() {},
 
   /**
    * Lifecycle function--Called when page hide
    */
-  onHide() {
-  },
+  onHide() {},
 
   /**
    * Lifecycle function--Called when page unload
    */
-  onUnload() {
-  },
+  onUnload() {},
 
   /**
    * Page event handler function--Called when user drop down
    */
-  onPullDownRefresh() {
-  },
+  onPullDownRefresh() {},
 
   /**
    * Called when page reach bottom
    */
-  onReachBottom() {
-  },
+  onReachBottom() {},
 
   /**
    * Called when user click on the top right corner to share
    */
-  onShareAppMessage() {
-  },
+  onShareAppMessage() {},
 });

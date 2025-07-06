@@ -2,40 +2,40 @@
 Page({
   data: {
     currentDay: 1,
-      currentRole: "werewolf", // 当前行动角色
-      roleOrder: ["werewolf", "witch", "seer", "guard"], // 角色行动顺序
+    currentRole: "werewolf", // 当前行动角色
+    roleOrder: ["werewolf", "witch", "seer", "guard"], // 角色行动顺序
     currentRoleIndex: 0,
     isCurrentPlayer: true, // 是否当前玩家的回合
     players: [
       {
-          seatNumber: 1,
-          name: "玩家1",
-          alive: true,
-          role: "villager",
+        seatNumber: 1,
+        name: "玩家1",
+        alive: true,
+        role: "villager",
       },
       {
-          seatNumber: 2,
-          name: "玩家2",
-          alive: true,
-          role: "werewolf",
+        seatNumber: 2,
+        name: "玩家2",
+        alive: true,
+        role: "werewolf",
       },
       {
-          seatNumber: 3,
-          name: "玩家3",
-          alive: true,
-          role: "witch",
+        seatNumber: 3,
+        name: "玩家3",
+        alive: true,
+        role: "witch",
       },
       {
-          seatNumber: 4,
-          name: "玩家4",
-          alive: true,
-          role: "seer",
+        seatNumber: 4,
+        name: "玩家4",
+        alive: true,
+        role: "seer",
       },
       {
-          seatNumber: 5,
-          name: "玩家5",
-          alive: true,
-          role: "guard",
+        seatNumber: 5,
+        name: "玩家5",
+        alive: true,
+        role: "guard",
       },
     ],
     selectedTarget: null, // 狼人选择的目标
@@ -51,24 +51,24 @@ Page({
     checkedPlayers: [], // 已经查验过的玩家
     roles: {
       werewolf: {
-          name: "狼人",
-          description: "每晚可以杀死一名玩家，目标是消灭所有好人。",
-          image: "/static/images/werewolf.png",
+        name: "狼人",
+        description: "每晚可以杀死一名玩家，目标是消灭所有好人。",
+        image: "/static/images/werewolf.png",
       },
       witch: {
-          name: "女巫",
-          description: "拥有一瓶解药和一瓶毒药。",
-          image: "/static/images/witch.png",
+        name: "女巫",
+        description: "拥有一瓶解药和一瓶毒药。",
+        image: "/static/images/witch.png",
       },
       seer: {
-          name: "预言家",
-          description: "每晚可以查验一名玩家的身份。",
-          image: "/static/images/seer.png",
+        name: "预言家",
+        description: "每晚可以查验一名玩家的身份。",
+        image: "/static/images/seer.png",
       },
       guard: {
-          name: "守卫",
-          description: "每晚可以保护一名玩家不被狼人杀死。",
-          image: "/static/images/guard.png",
+        name: "守卫",
+        description: "每晚可以保护一名玩家不被狼人杀死。",
+        image: "/static/images/guard.png",
       },
     },
   },
@@ -81,13 +81,13 @@ Page({
   // 获取角色名称
   getRoleName() {
     const role = this.data.roles[this.data.currentRole];
-      return role ? role.name : "未知角色";
+    return role ? role.name : "未知角色";
   },
 
   // 获取角色描述
   getRoleDescription() {
     const role = this.data.roles[this.data.currentRole];
-      return role ? role.description : "";
+    return role ? role.description : "";
   },
 
   // 获取存活玩家列表
@@ -97,18 +97,18 @@ Page({
 
   // 获取可查验玩家列表
   getCheckablePlayers() {
-      return this.data.players.filter(
-          (player) =>
-              player.alive && !this.data.checkedPlayers.includes(player.seatNumber),
-      );
+    return this.data.players.filter(
+      (player) =>
+        player.alive && !this.data.checkedPlayers.includes(player.seatNumber),
+    );
   },
 
   // 获取可守护玩家列表
   getGuardablePlayers() {
-      return this.data.players.filter(
-          (player) =>
-              player.alive && player.seatNumber !== this.data.lastGuardedPlayer,
-      );
+    return this.data.players.filter(
+      (player) =>
+        player.alive && player.seatNumber !== this.data.lastGuardedPlayer,
+    );
   },
 
   // 选择目标
@@ -165,16 +165,16 @@ Page({
   // 确认行动
   confirmAction() {
     switch (this.data.currentRole) {
-        case "werewolf":
+      case "werewolf":
         this.handleWerewolfAction();
         break;
-        case "witch":
+      case "witch":
         this.handleWitchAction();
         break;
-        case "seer":
+      case "seer":
         this.handleSeerAction();
         break;
-        case "guard":
+      case "guard":
         this.handleGuardAction();
         break;
     }
@@ -207,22 +207,22 @@ Page({
   // 处理预言家行动
   handleSeerAction() {
     if (this.data.selectedCheckTarget) {
-        const checkedPlayers = [
-            ...this.data.checkedPlayers,
-            this.data.selectedCheckTarget,
-        ];
+      const checkedPlayers = [
+        ...this.data.checkedPlayers,
+        this.data.selectedCheckTarget,
+      ];
       this.setData({
         checkedPlayers,
       });
 
-        const targetPlayer = this.data.players.find(
-            (p) => p.seatNumber === this.data.selectedCheckTarget,
-        );
+      const targetPlayer = this.data.players.find(
+        (p) => p.seatNumber === this.data.selectedCheckTarget,
+      );
       if (targetPlayer) {
-          const isWerewolf = targetPlayer.role === "werewolf";
+        const isWerewolf = targetPlayer.role === "werewolf";
         wx.showModal({
-            title: "查验结果",
-            content: `${targetPlayer.name} 是${isWerewolf ? "狼人" : "好人"}`,
+          title: "查验结果",
+          content: `${targetPlayer.name} 是${isWerewolf ? "狼人" : "好人"}`,
           showCancel: false,
         });
       }
@@ -260,15 +260,15 @@ Page({
       selectedPoisonTarget: null,
       selectedCheckTarget: null,
       selectedGuardTarget: null,
-        showDeathInfo:
-            this.data.currentRole === "witch" && this.data.killedPlayer !== null,
+      showDeathInfo:
+        this.data.currentRole === "witch" && this.data.killedPlayer !== null,
     });
   },
 
   // 结束夜晚
   endNight() {
     wx.navigateTo({
-        url: "/pages/Speech/index",
+      url: "/pages/Speech/index",
     });
   },
 

@@ -31,7 +31,7 @@ Page({
   selectSeat(e) {
     const seatNumber = e.currentTarget.dataset.seat;
     if (this.data.isSitting) {
-      wx.showToast({title: "请先站起再换座位", icon: "none"});
+      wx.showToast({ title: "请先站起再换座位", icon: "none" });
       return;
     }
     if (seatNumber !== undefined) {
@@ -62,8 +62,8 @@ Page({
   // 坐下
   sitDown() {
     if (
-        this.data.selectedSeat &&
-        !this.data.occupiedSeats.includes(this.data.selectedSeat)
+      this.data.selectedSeat &&
+      !this.data.occupiedSeats.includes(this.data.selectedSeat)
     ) {
       const newOccupiedSeats = [
         ...this.data.occupiedSeats,

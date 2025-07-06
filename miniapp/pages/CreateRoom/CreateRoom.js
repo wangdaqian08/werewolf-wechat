@@ -4,7 +4,7 @@ Page({
     playerCounts: [6, 8, 10, 12],
     selectedPlayerCount: 0,
     fixedRoles: [],
-    werewolf: {name: "Werewolf", count: 2, min: 1, max: 4},
+    werewolf: { name: "Werewolf", count: 2, min: 1, max: 4 },
     werewolfRange: [1, 2, 3, 4],
     selectedRolesList: [],
     currentTotal: 0,
@@ -18,9 +18,9 @@ Page({
 
     // Example: fixed roles for all counts
     const fixedRoles = [
-      {name: "Seer", count: 1},
-      {name: "Witch", count: 1},
-      {name: "Hunter", count: 1},
+      { name: "Seer", count: 1 },
+      { name: "Witch", count: 1 },
+      { name: "Hunter", count: 1 },
     ];
 
     const werewolf = { ...this.data.werewolf, count: 2 };
@@ -39,8 +39,8 @@ Page({
     const count = this.data.werewolfRange[e.detail.value];
     const werewolf = { ...this.data.werewolf, count };
     const selectedRolesList = this._getSelectedRolesList(
-        this.data.fixedRoles,
-        werewolf,
+      this.data.fixedRoles,
+      werewolf,
     );
     const currentTotal = this._getTotal(this.data.fixedRoles, werewolf);
     this.setData({
@@ -68,7 +68,7 @@ Page({
 
   _getSelectedRolesList(fixedRoles, werewolf) {
     const list = [{ name: werewolf.name, count: werewolf.count }];
-    fixedRoles.forEach((r) => list.push({name: r.name, count: r.count}));
+    fixedRoles.forEach((r) => list.push({ name: r.name, count: r.count }));
     return list;
   },
 

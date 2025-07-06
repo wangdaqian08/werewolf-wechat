@@ -1,93 +1,93 @@
 // index.js
 Page({
   data: {
-      roomNumber: "123456",
+    roomNumber: "123456",
     currentDay: 1,
-      currentStage: "night_werewolf",
+    currentStage: "night_werewolf",
     completedStages: [],
     showRoles: true,
     autoVoice: true,
     gameStages: [
-        {id: "night_werewolf", name: "狼人行动"},
-        {id: "night_witch", name: "女巫行动"},
-        {id: "night_seer", name: "预言家行动"},
-        {id: "night_guard", name: "守卫行动"},
-        {id: "day_announce", name: "公布死亡信息"},
-        {id: "day_speech", name: "玩家发言"},
-        {id: "day_vote", name: "投票环节"},
+      { id: "night_werewolf", name: "狼人行动" },
+      { id: "night_witch", name: "女巫行动" },
+      { id: "night_seer", name: "预言家行动" },
+      { id: "night_guard", name: "守卫行动" },
+      { id: "day_announce", name: "公布死亡信息" },
+      { id: "day_speech", name: "玩家发言" },
+      { id: "day_vote", name: "投票环节" },
     ],
     players: [
       {
-          seatNumber: 1,
-          name: "玩家1",
-          role: "狼人",
-          alive: true,
+        seatNumber: 1,
+        name: "玩家1",
+        role: "狼人",
+        alive: true,
       },
       {
-          seatNumber: 2,
-          name: "玩家2",
-          role: "狼人",
-          alive: true,
+        seatNumber: 2,
+        name: "玩家2",
+        role: "狼人",
+        alive: true,
       },
       {
-          seatNumber: 3,
-          name: "玩家3",
-          role: "村民",
-          alive: true,
+        seatNumber: 3,
+        name: "玩家3",
+        role: "村民",
+        alive: true,
       },
       {
-          seatNumber: 4,
-          name: "玩家4",
-          role: "村民",
-          alive: true,
+        seatNumber: 4,
+        name: "玩家4",
+        role: "村民",
+        alive: true,
       },
       {
-          seatNumber: 5,
-          name: "玩家5",
-          role: "女巫",
-          alive: true,
+        seatNumber: 5,
+        name: "玩家5",
+        role: "女巫",
+        alive: true,
       },
       {
-          seatNumber: 6,
-          name: "玩家6",
-          role: "预言家",
-          alive: true,
+        seatNumber: 6,
+        name: "玩家6",
+        role: "预言家",
+        alive: true,
       },
       {
-          seatNumber: 7,
-          name: "玩家7",
-          role: "村民",
-          alive: true,
+        seatNumber: 7,
+        name: "玩家7",
+        role: "村民",
+        alive: true,
       },
       {
-          seatNumber: 8,
-          name: "玩家8",
-          role: "村民",
-          alive: true,
+        seatNumber: 8,
+        name: "玩家8",
+        role: "村民",
+        alive: true,
       },
       {
-          seatNumber: 9,
-          name: "玩家9",
-          role: "守卫",
-          alive: true,
+        seatNumber: 9,
+        name: "玩家9",
+        role: "守卫",
+        alive: true,
       },
       {
-          seatNumber: 10,
-          name: "玩家10",
-          role: "村民",
-          alive: false,
+        seatNumber: 10,
+        name: "玩家10",
+        role: "村民",
+        alive: false,
       },
       {
-          seatNumber: 11,
-          name: "玩家11",
-          role: "狼人",
-          alive: true,
+        seatNumber: 11,
+        name: "玩家11",
+        role: "狼人",
+        alive: true,
       },
       {
-          seatNumber: 12,
-          name: "玩家12",
-          role: "村民",
-          alive: true,
+        seatNumber: 12,
+        name: "玩家12",
+        role: "村民",
+        alive: true,
       },
     ],
   },
@@ -104,9 +104,9 @@ Page({
   // 跳过当前阶段
   skipStage(e) {
     const stageId = e.currentTarget.dataset.stage;
-      const currentIndex = this.data.gameStages.findIndex(
-          (stage) => stage.id === stageId,
-      );
+    const currentIndex = this.data.gameStages.findIndex(
+      (stage) => stage.id === stageId,
+    );
 
     if (currentIndex < this.data.gameStages.length - 1) {
       const completedStages = [...this.data.completedStages, stageId];
@@ -128,9 +128,9 @@ Page({
   togglePlayerStatus(e) {
     const seatNumber = e.currentTarget.dataset.seat;
     const players = [...this.data.players];
-      const playerIndex = players.findIndex(
-          (player) => player.seatNumber === seatNumber,
-      );
+    const playerIndex = players.findIndex(
+      (player) => player.seatNumber === seatNumber,
+    );
 
     if (playerIndex !== -1) {
       players[playerIndex].alive = !players[playerIndex].alive;
@@ -157,12 +157,12 @@ Page({
   // 结束游戏
   endGame() {
     wx.showModal({
-        title: "确认结束",
-        content: "确定要结束当前游戏吗？",
+      title: "确认结束",
+      content: "确定要结束当前游戏吗？",
       success: (res) => {
         if (res.confirm) {
           wx.navigateTo({
-              url: "/pages/Home/index",
+            url: "/pages/Home/index",
           });
         }
       },
@@ -172,8 +172,8 @@ Page({
   // 重新开始游戏
   restartGame() {
     wx.showModal({
-        title: "确认重新开始",
-        content: "确定要重新开始游戏吗？所有进度将被重置。",
+      title: "确认重新开始",
+      content: "确定要重新开始游戏吗？所有进度将被重置。",
       success: (res) => {
         if (res.confirm) {
           const players = this.data.players.map((player) => ({
@@ -183,7 +183,7 @@ Page({
 
           this.setData({
             currentDay: 1,
-              currentStage: "night_werewolf",
+            currentStage: "night_werewolf",
             completedStages: [],
             players,
           });

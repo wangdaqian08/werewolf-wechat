@@ -1,5 +1,5 @@
 // app.js
-const {backendUrl} = require("./config.js");
+const { backendUrl } = require("./config.js");
 
 App({
   onLaunch() {
