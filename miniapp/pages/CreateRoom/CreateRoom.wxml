@@ -5,37 +5,42 @@
     <view class="picker">本局人数: {{selectedPlayerCount}}</view>
   </picker>
 
-  <!-- Role configuration area -->
+  <!-- Role selection area -->
   <view wx:if="{{selectedPlayerCount > 0}}" class="role-config">
-    <text class="section-title">角色设置</text>
 
-    <!-- Werewolf role (adjustable) -->
-    <view class="role-item">
-      <text>Werewolf</text>
-      <picker mode="selector" range="{{werewolfRange}}" bindchange="onWerewolfChange">
-        <view class="picker">选择人数: {{werewolf.count}}</view>
-      </picker>
+    <picker mode="selector" range="{{werewolfRange}}" bindchange="onWerewolfChange" value="{{werewolfCount - 1}}">
+      <view class="picker">狼人数量: {{werewolfCount}}</view>
+    </picker>
+    <image src="{{werewolfRole.image}}" class="role-image" mode="aspectFill" />
+    <view class="role-info">
+      <text class="role-name">{{werewolfRole.name}}</text>
     </view>
+<!--    <view wx:if="{{werewolfRole.selected}}" class="role-selected-mark">✔</view>-->
+<!--    <view wx:if="{{selectedRoles.length >= selectedPlayerCount && !werewolfRole.selected}}" class="role-disabled-mask"></view>-->
 
-    <!-- Fixed roles -->
-    <view class="fixed-roles">
-      <text class="role-title">固定角色:</text>
-      <view wx:for="{{fixedRoles}}" wx:key="name" class="role-item">
-        <text>{{item.name}} - Players: {{item.count}}</text>
+    <text class="section-title">选择角色</text>
+    <view class="roles-list">
+      <view
+              wx:for="{{roles}}"
+              wx:key="id"
+              class="role-item{{item.selected ? ' selected' : ''}}"
+              bindtap="onRoleTap"
+              data-id="{{item.id}}"
+              data-disabled="{{selectedRoles.length >= selectedPlayerCount && !item.selected}}"
+      >
+        <image src="{{item.image}}" class="role-image" mode="aspectFill" />
+        <view class="role-info">
+          <text class="role-name">{{item.name}}</text>
+        </view>
+        <view wx:if="{{item.selected}}" class="role-selected-mark">✔</view>
+        <view wx:if="{{selectedRoles.length > selectedPlayerCount}}" class="role-disabled-mask"></view>
       </view>
     </view>
-
-    <!-- Selected roles summary (before confirm) -->
-    <view class="selected-roles">
-      <text class="role-title">已选角色:</text>
-      <view wx:for="{{selectedRolesList}}" wx:key="name" class="role-item">
-        <text>{{item.name}}: {{item.count}}</text>
-      </view>
-      <text>Total: {{currentTotal}} / {{selectedPlayerCount}}</text>
+    <text class="summary">已选: {{selectedRoles.length}} / {{selectedPlayerCount}}</text>
+    <button bindtap="onConfirm" disabled="{{selectedRoles.length !== selectedPlayerCount}}">确认</button>
+    <view wx:if="{{showResetButton}}">
+      <button bindtap="onReset" type="default">Reset Selection</button>
     </view>
-
-    <!-- Confirm button -->
-    <button bindtap="onConfirm" disabled="{{currentTotal !== selectedPlayerCount}}">确认</button>
   </view>
 
   <!-- Final summary -->
