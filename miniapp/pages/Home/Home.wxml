@@ -23,19 +23,4 @@
             bindtap="navigateToJoinRoom"
             class="btn">加入房间
     </button>
-    <!-- 加入房间输入框（点击加入房间后显示） -->
-    <view wx:if="{{showJoinRoomInput}}" class="input-container">
-        <input
-                placeholder="输入房间号"
-                bindinput="onRoomIdInput"
-                class="room-input"/>
-        <button
-                bindtap="joinRoom"
-                class="btn">确认加入
-        </button>
-        <button
-                bindtap="cancelJoinRoom"
-                class="btn cancel-btn">取消
-        </button>
-    </view>
 </view>

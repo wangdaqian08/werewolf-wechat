@@ -74,27 +74,6 @@ Page({
     });
   },
 
-  // 显示加入房间输入框
-  showJoinRoomInputHandler() {
-    this.setData({
-      showJoinRoomInput: true,
-    });
-  },
-
-  // 取消加入房间
-  cancelJoinRoom() {
-    this.setData({
-      showJoinRoomInput: false
-    });
-  },
-
-  // 房间号输入处理
-  onRoomIdInput(e) {
-    this.setData({
-      roomId: e.detail.value
-    });
-  },
-
   // 跳转到加入房间页面
   navigateToJoinRoom() {
     if (!getApp().globalData.userInfo) {
