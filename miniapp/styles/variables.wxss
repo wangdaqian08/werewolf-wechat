@@ -1,11 +1,10 @@
-
 /* 微信小程序中不支持:root，直接定义变量 */
 page {
   /* 颜色变量 */
   --primary-color: #e94560;
   --bg-color: #1a1a2e;
   --text-color: #ffffff;
-  
+
   /* 尺寸变量 */
   --font-large: 36px;
   --font-medium: 18px;

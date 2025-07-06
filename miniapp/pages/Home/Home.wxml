@@ -1,18 +1,26 @@
 <view class="container">
-  <view class="logo-container">
-    <text class="text-logo">🐺</text>
-  </view>
-  <text class="text-title">{{title}}</text>
-  <text class="text-subtitle">{{subtitle}}</text>
- <!-- 授权按钮（未授权时显示） -->
- <button 
-    wx:if="{{showAuthButton}}" 
-    open-type="getUserInfo" 
-    bindgetuserinfo="onGetUserInfo"
-    class="auth-btn">授权登录</button>
-<!-- 加入房间按钮（授权后显示） -->
-<button 
-    wx:if="{{hasUserInfo}}" 
-    bindtap="navigateToJoinRoom" 
-    class="btn">加入房间</button>
+    <view class="logo-container">
+        <text class="text-logo">🐺</text>
+    </view>
+    <text class="text-title">{{title}}</text>
+    <text class="text-subtitle">{{subtitle}}</text>
+    <!-- 授权按钮（未授权时显示） -->
+    <button
+            wx:if="{{showAuthButton}}"
+            open-type="getUserInfo"
+            bindgetuserinfo="onGetUserInfo"
+            class="auth-btn">授权登录
+    </button>
+    <!-- 创建房间按钮（授权后显示） -->
+    <button
+            wx:if="{{hasUserInfo && !showJoinRoomInput}}"
+            bindtap="navigateToCreateRoom"
+            class="btn">创建房间
+    </button>
+    <!-- 加入房间按钮（授权后显示） -->
+    <button
+            wx:if="{{hasUserInfo && !showJoinRoomInput}}"
+            bindtap="navigateToJoinRoom"
+            class="btn">加入房间
+    </button>
 </view>

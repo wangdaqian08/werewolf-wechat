@@ -1,7 +1,7 @@
-
 {
   "pages": [
     "pages/Home/Home",
+    "pages/CreateRoom/CreateRoom",
     "pages/JoinRoom/JoinRoom",
     "pages/RoleReveal/RoleReveal",
     "pages/NightAction/index",
