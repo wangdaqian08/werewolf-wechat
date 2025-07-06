@@ -1,91 +1,91 @@
 // index.js
 Page({
   data: {
-      identityOptions: [
-          "未标记",
-          "狼人",
-          "村民",
-          "预言家",
-          "女巫",
-          "守卫",
-          "猎人",
-          "可疑",
-          "已查验",
-          "已排除",
-      ],
-      gameNotes: "",
+    identityOptions: [
+      "未标记",
+      "狼人",
+      "村民",
+      "预言家",
+      "女巫",
+      "守卫",
+      "猎人",
+      "可疑",
+      "已查验",
+      "已排除",
+    ],
+    gameNotes: "",
     players: [
       {
-          seatNumber: 1,
-          name: "玩家1",
-          alive: true,
-          tag: "未标记",
+        seatNumber: 1,
+        name: "玩家1",
+        alive: true,
+        tag: "未标记",
       },
       {
-          seatNumber: 2,
-          name: "玩家2",
-          alive: true,
-          tag: "狼人",
+        seatNumber: 2,
+        name: "玩家2",
+        alive: true,
+        tag: "狼人",
       },
       {
-          seatNumber: 3,
-          name: "玩家3",
-          alive: true,
-          tag: "村民",
+        seatNumber: 3,
+        name: "玩家3",
+        alive: true,
+        tag: "村民",
       },
       {
-          seatNumber: 4,
-          name: "玩家4",
-          alive: true,
-          tag: "预言家",
+        seatNumber: 4,
+        name: "玩家4",
+        alive: true,
+        tag: "预言家",
       },
       {
-          seatNumber: 5,
-          name: "玩家5",
-          alive: true,
-          tag: "女巫",
+        seatNumber: 5,
+        name: "玩家5",
+        alive: true,
+        tag: "女巫",
       },
       {
-          seatNumber: 6,
-          name: "玩家6",
-          alive: true,
-          tag: "守卫",
+        seatNumber: 6,
+        name: "玩家6",
+        alive: true,
+        tag: "守卫",
       },
       {
-          seatNumber: 7,
-          name: "玩家7",
-          alive: true,
-          tag: "猎人",
+        seatNumber: 7,
+        name: "玩家7",
+        alive: true,
+        tag: "猎人",
       },
       {
-          seatNumber: 8,
-          name: "玩家8",
-          alive: true,
-          tag: "可疑",
+        seatNumber: 8,
+        name: "玩家8",
+        alive: true,
+        tag: "可疑",
       },
       {
-          seatNumber: 9,
-          name: "玩家9",
-          alive: true,
-          tag: "已查验",
+        seatNumber: 9,
+        name: "玩家9",
+        alive: true,
+        tag: "已查验",
       },
       {
-          seatNumber: 10,
-          name: "玩家10",
-          alive: false,
-          tag: "已排除",
+        seatNumber: 10,
+        name: "玩家10",
+        alive: false,
+        tag: "已排除",
       },
       {
-          seatNumber: 11,
-          name: "玩家11",
-          alive: true,
-          tag: "未标记",
+        seatNumber: 11,
+        name: "玩家11",
+        alive: true,
+        tag: "未标记",
       },
       {
-          seatNumber: 12,
-          name: "玩家12",
-          alive: true,
-          tag: "未标记",
+        seatNumber: 12,
+        name: "玩家12",
+        alive: true,
+        tag: "未标记",
       },
     ],
   },
@@ -119,18 +119,18 @@ Page({
   // 获取标签样式类
   getTagClass(tag) {
     const tagClasses = {
-        未标记: "tag-none",
-        狼人: "tag-werewolf",
-        村民: "tag-villager",
-        预言家: "tag-seer",
-        女巫: "tag-witch",
-        守卫: "tag-guard",
-        猎人: "tag-hunter",
-        可疑: "tag-suspicious",
-        已查验: "tag-checked",
-        已排除: "tag-excluded",
+      未标记: "tag-none",
+      狼人: "tag-werewolf",
+      村民: "tag-villager",
+      预言家: "tag-seer",
+      女巫: "tag-witch",
+      守卫: "tag-guard",
+      猎人: "tag-hunter",
+      可疑: "tag-suspicious",
+      已查验: "tag-checked",
+      已排除: "tag-excluded",
     };
-      return tagClasses[tag] || "tag-none";
+    return tagClasses[tag] || "tag-none";
   },
 
   // 更新游戏笔记
@@ -144,8 +144,8 @@ Page({
   saveChanges() {
     // 保存标记和笔记的逻辑
     wx.showToast({
-        title: "保存成功",
-        icon: "success",
+      title: "保存成功",
+      icon: "success",
       duration: 2000,
     });
   },
@@ -154,24 +154,24 @@ Page({
   clearAllTags() {
     // 显示确认对话框
     wx.showModal({
-        title: "确认清除",
-        content: "确定要清除所有标记吗？",
+      title: "确认清除",
+      content: "确定要清除所有标记吗？",
       success: (res) => {
         if (res.confirm) {
           // 清除所有标记
           const players = this.data.players.map((player) => ({
             ...player,
-              tag: "未标记",
+            tag: "未标记",
           }));
 
           this.setData({
             players,
-              gameNotes: "",
+            gameNotes: "",
           });
 
           wx.showToast({
-              title: "已清除所有标记",
-              icon: "success",
+            title: "已清除所有标记",
+            icon: "success",
             duration: 2000,
           });
         }
