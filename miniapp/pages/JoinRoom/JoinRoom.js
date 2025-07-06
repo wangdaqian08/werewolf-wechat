@@ -1,8 +1,8 @@
 // index.js
 Page({
   data: {
-    roomNumber: '',
-    nickname: '',
+    roomNumber: "",
+    nickname: "",
     selectedSeat: null, // 当前选中的座位（null表示未选择）
     occupiedSeats: [], // 已被占用的座位
     hasJoined: false,
@@ -31,7 +31,7 @@ Page({
   selectSeat(e) {
     const seatNumber = e.currentTarget.dataset.seat;
     if (this.data.isSitting) {
-      wx.showToast({ title: '请先站起再换座位', icon: 'none' });
+      wx.showToast({title: "请先站起再换座位", icon: "none"});
       return;
     }
     if (seatNumber !== undefined) {
@@ -46,14 +46,14 @@ Page({
         hasJoined: true,
       });
       wx.showToast({
-        title: '成功加入房间',
-        icon: 'success',
+        title: "成功加入房间",
+        icon: "success",
         duration: 2000,
       });
     } else {
       wx.showToast({
-        title: '请输入完整信息',
-        icon: 'none',
+        title: "请输入完整信息",
+        icon: "none",
         duration: 2000,
       });
     }
@@ -61,15 +61,21 @@ Page({
 
   // 坐下
   sitDown() {
-    if (this.data.selectedSeat && !this.data.occupiedSeats.includes(this.data.selectedSeat)) {
-      const newOccupiedSeats = [...this.data.occupiedSeats, this.data.selectedSeat];
+    if (
+        this.data.selectedSeat &&
+        !this.data.occupiedSeats.includes(this.data.selectedSeat)
+    ) {
+      const newOccupiedSeats = [
+        ...this.data.occupiedSeats,
+        this.data.selectedSeat,
+      ];
       this.setData({
         occupiedSeats: newOccupiedSeats,
         isSitting: true,
       });
       wx.showToast({
-        title: '已成功坐下',
-        icon: 'success',
+        title: "已成功坐下",
+        icon: "success",
         duration: 2000,
       });
     }
@@ -87,8 +93,8 @@ Page({
         selectedSeat: null,
       });
       wx.showToast({
-        title: '已站起',
-        icon: 'success',
+        title: "已站起",
+        icon: "success",
         duration: 2000,
       });
     }

@@ -1,6 +1,6 @@
 /**app.wxss**/
-@import './styles/variables.wxss';
-@import './styles/common.wxss';
+@import "./styles/variables.wxss";
+@import "./styles/common.wxss";
 
 page {
   font-family: -apple-system, sans-serif;

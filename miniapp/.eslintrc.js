@@ -4,9 +4,7 @@ module.exports = {
     node: true,
     es2021: true,
   },
-  extends: [
-    'eslint:recommended',
-  ],
+  extends: ["eslint:recommended"],
   globals: {
     wx: true,
     App: true,
@@ -16,11 +14,13 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: "module",
   },
   rules: {
-    'no-console': 'off',
-    'func-names': 'off',
-    'no-underscore-dangle': 'off',
+    "no-console": "off",
+    "func-names": "off",
+    semi: ["error", "always"],
+    "class-methods-use-this": 0,
+    "no-underscore-dangle": 0,
   },
 };

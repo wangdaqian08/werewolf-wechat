@@ -1,24 +1,24 @@
 // app.js
-const { backendUrl } = require('./config.js');
+const {backendUrl} = require("./config.js");
 
 App({
   onLaunch() {
     // 小程序启动时执行的逻辑
-    console.log('小程序启动');
+    console.log("小程序启动");
 
     // 获取系统信息
     const systemInfo = wx.getSystemInfoSync();
     this.globalData.systemInfo = systemInfo;
 
     // 检查更新
-    if (wx.canIUse('getUpdateManager')) {
+    if (wx.canIUse("getUpdateManager")) {
       const updateManager = wx.getUpdateManager();
       updateManager.onCheckForUpdate((res) => {
         if (res.hasUpdate) {
           updateManager.onUpdateReady(() => {
             wx.showModal({
-              title: '更新提示',
-              content: '新版本已经准备好，是否重启应用？',
+              title: "更新提示",
+              content: "新版本已经准备好，是否重启应用？",
               success(res) {
                 if (res.confirm) {
                   updateManager.applyUpdate();
@@ -29,8 +29,8 @@ App({
 
           updateManager.onUpdateFailed(() => {
             wx.showModal({
-              title: '更新提示',
-              content: '新版本下载失败，请检查网络后重试',
+              title: "更新提示",
+              content: "新版本下载失败，请检查网络后重试",
             });
           });
         }
@@ -54,9 +54,9 @@ App({
               wx.request({
                 url: `${backendUrl}/login`,
                 header: {
-                  'Content-Type': 'application/json',
+                  "Content-Type": "application/json",
                 },
-                method: 'POST',
+                method: "POST",
                 data: { code }, // use actual code
                 success: (res) => {
                   console.log(res.data);
@@ -88,17 +88,17 @@ App({
    */
   onShow() {
     // 小程序显示时执行的逻辑
-    console.log('小程序显示');
+    console.log("小程序显示");
   },
 
   onHide() {
     // 小程序隐藏时执行的逻辑
-    console.log('小程序隐藏');
+    console.log("小程序隐藏");
   },
 
   onError(err) {
     // 小程序发生错误时执行的逻辑
-    console.error('小程序错误：', err);
+    console.error("小程序错误：", err);
   },
 
   globalData: {
